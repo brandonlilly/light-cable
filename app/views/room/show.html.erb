@@ -1,0 +1,12 @@
+<h1>Rooms#show</h1>
+
+<ul>
+<% @messages.each do |message| %>
+  <li><%= message.content %></li>
+<% end %>
+</ul>
+
+<form>
+  <label>Say something</label><br>
+  <input type='text' data-behavior='room_speaker'>
+</form>
