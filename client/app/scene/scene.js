@@ -3,7 +3,6 @@ import { createCamera } from './camera'
 import { createRoom } from './room'
 import { createPlayer } from './player'
 import FlyControls from './flyControls'
-import key from 'keymaster'
 
 export function createScene() {
   const scene = new Scene()
@@ -11,11 +10,10 @@ export function createScene() {
 
   const clock = new Clock()
 
-  const light = new AmbientLight( 0x252525 ) // soft white light
-  scene.add( light )
+  const light = new AmbientLight(0x252525)
+  scene.add(light)
 
   const player = createPlayer()
-
   scene.add(player)
 
   const lightOne = new PointLight(0x336699, 10, 200)
@@ -38,7 +36,6 @@ export function createScene() {
   window.addEventListener('resize', onWindowResize, true)
   onWindowResize()
 
-
   const dummy = new Object3D()
   const controls = new FlyControls(dummy)
 
@@ -58,15 +55,11 @@ export function createScene() {
 
   function animate() {
     requestAnimationFrame(animate)
-
-    delta = clock.getDelta()
-    let current = new Date()
-    let elapsed = current - start
-
     render()
   }
 
   function render() {
+    delta = clock.getDelta()
     controls.update(delta)
 
     renderer.render(scene, camera)

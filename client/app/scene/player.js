@@ -19,7 +19,7 @@ export function createPlayer() {
     color: 0xFFFFFF,
     size: 16,
     opacity: 0.99,
-    map: textureLoader.load("assets/orb.png"),
+    map: textureLoader.load("assets/orb2.png"),
     transparent: true
   })
   const geometry = new Geometry()
