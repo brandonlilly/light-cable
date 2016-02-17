@@ -6,6 +6,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import createRoom from './room'
 import reducer from './reducers'
+import { createScene } from './scene/scene'
 
 const store = createStore(
   reducer,
@@ -28,4 +29,6 @@ $(function onLoad() {
       <Root/>
     </Provider>
   ), document.getElementById('app'))
+
+  createScene()
 })

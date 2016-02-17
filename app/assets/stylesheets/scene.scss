@@ -1,0 +1,33 @@
+$background-color: #181D21;
+
+html {
+  background: $background-color;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: lighter;
+  letter-spacing: 2px;
+
+  overflow-y: scroll;
+  height: 100%;
+  margin: 0;
+  background-color: $background-color;
+}
+
+#app {
+  z-index: 1000;
+  position: relative;
+  min-height: 100vh;
+}
+
+#scene canvas {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}

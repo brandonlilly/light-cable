@@ -24,14 +24,12 @@ class Root extends Component {
   render() {
     return (
       <div>
-        <h1>Root!</h1>
-        <MessageList />
         <Speak
           sendMessage={(message) => {
             App.room.speak(message)
             console.log('message:', message)
-          }}
-        />
+          }} />
+        <MessageList />
       </div>
     )
   }

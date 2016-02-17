@@ -3,11 +3,7 @@ import { connect } from 'react-redux'
 
 let MessageItem = ({ content, created_at }) => {
   return (
-    <li className="messageItem">
-      <span className="bold">{created_at}</span>
-      {' '}
-      <div>{content}</div>
-    </li>
+    <li className="messageItem">{content}</li>
   )
 }
 
