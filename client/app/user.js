@@ -11,7 +11,9 @@ class User {
     controls.rollSpeed = Math.PI / 3
     controls.autoForward = false
     controls.dragToLook = true
-    controls.predicate = arg => true
+    controls.predicate = arg => (
+      document.activeElement != document.getElementById('messageInput')
+    )
 
     object.add(camera)
 

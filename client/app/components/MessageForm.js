@@ -11,7 +11,7 @@ const MessageForm = ({ sendMessage }) => {
   return (
     <div className="messageForm">
       <form onSubmit={onSubmit}>
-        <input ref={node => { input = node }} />
+        <input ref={node => { input = node }} id="messageInput" />
       </form>
     </div>
   )
