@@ -9,4 +9,5 @@ tabs and move to see yourselves flying around. Still need to implement disconnec
 ### Install
 
 `bundle install`  
+`rails db:migrate`
 `rails s`  
