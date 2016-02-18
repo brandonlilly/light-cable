@@ -5,9 +5,17 @@ const names = [
   "Laputa", "Nausicaa", "Rosso", "Ponyo", "Whisper",
 ]
 
-export function generateUUID() {
+export function generateName() {
+  const name = sample(names) + Math.floor(Math.random() * 100)
+  return name
+}
 
-  const name = sample(names)
-  const uuid = name + Math.floor(Math.random() * 100)
-  return uuid
+export function generateUUID() {
+  const randomString = (length, chars) =>  {
+    var result = ''
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)]
+    return result
+  }
+
+  return randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 }

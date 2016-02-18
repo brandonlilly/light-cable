@@ -5,13 +5,13 @@ import { Root } from './components'
 import { compose, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createScene } from './scene/scene'
-import { generateUUID } from './utils/player'
+import { generateName, generateUUID } from './utils/player'
 import { createPlayer } from './scene/player'
 import createChannel from './channel'
 import reducer from './reducers'
 
 const uuid = generateUUID()
-const name = uuid
+const name = generateName()
 
 const store = createStore(
   reducer,
