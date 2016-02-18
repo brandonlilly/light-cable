@@ -11,6 +11,7 @@ import createChannel from './channel'
 import reducer from './reducers'
 
 const uuid = generateUUID()
+const name = uuid
 
 const store = createStore(
   reducer,
@@ -22,10 +23,7 @@ const store = createStore(
 
 store.dispatch({
   type: 'SET_USER',
-  user: {
-    name: uuid,
-    uuid: uuid,
-  }
+  user: { name, uuid },
 })
 
 $(function onLoad() {
@@ -45,13 +43,11 @@ $(function onLoad() {
   }
 
   const setPosition = ({ uuid, coords }) => {
-    if (!otherPlayers[uuid]) {
-      addPlayer(uuid)
-    }
+    if (!otherPlayers[uuid]) { addPlayer(uuid) }
     otherPlayers[uuid].position.set(coords.x, coords.y, coords.z)
   }
 
-  const { channel, cable } = createChannel(store, uuid, setPosition, connectPlayer)
+  const { channel, cable } = createChannel(store, uuid, name, setPosition, connectPlayer)
   window.App = { channel, cable }
 
   ReactDOM.render((

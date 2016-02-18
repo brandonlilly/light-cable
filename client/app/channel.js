@@ -1,6 +1,6 @@
-export default (store, uuid, setPosition, connectPlayer, disconnectPlayer) => {
+export default (store, uuid, name, setPosition, connectPlayer, disconnectPlayer) => {
   const cable = ActionCable.createConsumer()
-  const channel = cable.subscriptions.create({ channel: "RootChannel", uuid }, {
+  const channel = cable.subscriptions.create({ channel: "RootChannel", uuid, name }, {
     connected() {
       console.log('Root channel connected')
     },
@@ -10,10 +10,7 @@ export default (store, uuid, setPosition, connectPlayer, disconnectPlayer) => {
     },
 
     received: function(data) {
-      console.log('recieved:', data)
-
-      if (data.uuid === uuid) {
-        console.log();
+      if (data.uuid === uuid && data.type != 'message') {
         return
       }
 
@@ -21,7 +18,10 @@ export default (store, uuid, setPosition, connectPlayer, disconnectPlayer) => {
         case 'message':
           store.dispatch({
             type: 'ADD_MESSAGE',
-            message: data['message'],
+            message: {
+              ...data['message'],
+              author: data['author'],
+            }
           })
           break
         case 'set_position':

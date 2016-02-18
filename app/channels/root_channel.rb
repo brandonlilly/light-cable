@@ -12,7 +12,7 @@ class RootChannel < ApplicationCable::Channel
   def message(data)
     message = Message.create! content: data['message']
 
-    broadcast type: 'message', message: message
+    broadcast type: 'message', message: message, author: params[:name]
   end
 
   def set_position(data)

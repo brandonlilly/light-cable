@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-let MessageItem = ({ content, created_at }) => {
+let MessageItem = ({ author, content, created_at }) => {
   return (
-    <li className="messageItem">{content}</li>
+    <li className="messageItem">{author}: {content}</li>
   )
 }
 

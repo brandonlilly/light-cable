@@ -9,11 +9,9 @@ const MessageForm = ({ sendMessage }) => {
   }
 
   return (
-    <div>
+    <div className="messageForm">
       <form onSubmit={onSubmit}>
-        <label>Say something</label><br/>
         <input ref={node => { input = node }} />
-        <button>Send</button>
       </form>
     </div>
   )

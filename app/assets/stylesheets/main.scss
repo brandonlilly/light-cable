@@ -1,0 +1,92 @@
+$background-color: #181D21;
+
+html {
+  background: $background-color;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: lighter;
+  letter-spacing: 2px;
+
+  overflow-y: scroll;
+  height: 100%;
+  margin: 0;
+  background-color: $background-color;
+}
+
+#app {
+  z-index: 1000;
+  position: relative;
+  min-height: 100vh;
+}
+
+.topBar {
+  width: 100%;
+
+  ul {
+    list-style: none;
+    text-align: center;
+    li {
+      display: inline-block;
+      padding: 10px;
+    }
+  }
+
+  .nameDisplay {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.sideBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+}
+
+$form-height: 50px;
+
+.messageList {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: $form-height;
+
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: scroll;
+
+  .messageItem {
+    padding: 5px 10px;
+  }
+}
+
+.messageForm {
+  position: absolute;
+  bottom: 0;
+  height: $form-height;
+  padding: 5px;
+
+  input {
+    background: none;
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    border: none;
+    height: 40px;
+    width: 300px;
+    padding: 10px;
+
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    font-weight: lighter;
+
+    &:focus {
+      outline: 1px solid rgba(255, 255, 255, 0.3);
+      border: none;
+    }
+  }
+}
