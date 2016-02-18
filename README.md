@@ -1,24 +1,12 @@
-## README
+## LightCable
+Quick exercise in ActionCable and three.js. Also uses Rails 5, React, and Redux.
+Highly experimental, only tested in Chrome.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Usage
+Chat in bottom left corner. WASD/QE/RF, and arrow keys to fly around. Open in multiple
+tabs and move to see yourselves flying around. Still need to implement disconnecting.
 
-Things you may want to cover:
+### Install
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`bundle install`  
+`rails s`  
