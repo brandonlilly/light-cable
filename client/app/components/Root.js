@@ -26,7 +26,7 @@ class Root extends Component {
       <div>
         <Speak
           sendMessage={(message) => {
-            App.room.speak(message)
+            App.room.message(message)
             console.log('message:', message)
           }} />
         <MessageList />

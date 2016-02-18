@@ -10,9 +10,14 @@ function messagesReducer(state = {}, action) {
   }
 }
 
+function playersReducer(state = {}, action) {
+  return state
+}
+
 function reducer(state = {}, action) {
   return {
     messages: messagesReducer(state.messages, action),
+    players:  playersReducer(state.players, action),
   }
 }
 

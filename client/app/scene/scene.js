@@ -2,6 +2,7 @@ import { Scene, WebGLRenderer, Fog, PointLight, AmbientLight, Object3D, Clock } 
 import { createCamera } from './camera'
 import { createRoom } from './room'
 import { createPlayer } from './player'
+import User from '../user'
 import FlyControls from './flyControls'
 
 export function createScene() {
@@ -9,16 +10,7 @@ export function createScene() {
   const camera = createCamera()
 
   const clock = new Clock()
-
-  const light = new AmbientLight(0x252525)
-  scene.add(light)
-
-  const player = createPlayer()
-  scene.add(player)
-
-  const lightOne = new PointLight(0x336699, 10, 200)
-  lightOne.position.set(0, 0, -20)
-  scene.add(lightOne)
+  scene.add(new AmbientLight(0x252525))
 
   const room = createRoom()
   scene.add(room)
@@ -30,27 +22,13 @@ export function createScene() {
     preserveDrawingBuffer: true,
     alpha: true,
   })
+
   const container = document.getElementById("scene")
   container.appendChild(renderer.domElement)
-
   window.addEventListener('resize', onWindowResize, true)
-  onWindowResize()
 
-  const dummy = new Object3D()
-  const controls = new FlyControls(dummy)
-
-  controls.movementSpeed = 100
-  controls.domElement = container
-  controls.rollSpeed = Math.PI / 3
-  controls.autoForward = false
-  controls.dragToLook = true
-  controls.predicate = arg => true
-
-  scene.add(dummy)
-  dummy.add(camera)
-
-  animate()
-  let start = new Date()
+  const user = new User({ camera, container })
+  scene.add(user.object)
   let delta = 0
 
   function animate() {
@@ -60,7 +38,7 @@ export function createScene() {
 
   function render() {
     delta = clock.getDelta()
-    controls.update(delta)
+    user.update(delta)
 
     renderer.render(scene, camera)
   }
@@ -70,4 +48,9 @@ export function createScene() {
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
   }
+
+  onWindowResize()
+  animate()
+
+  return { scene, user }
 }
