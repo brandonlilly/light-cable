@@ -2,16 +2,15 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Root } from './components'
-import { applyMiddleware, compose, createStore } from 'redux'
+import { compose, createStore } from 'redux'
 import { Provider } from 'react-redux'
-import createRoom from './room'
-import reducer from './reducers'
 import { createScene } from './scene/scene'
 import { generateUUID } from './utils/player'
 import { createPlayer } from './scene/player'
+import createChannel from './channel'
+import reducer from './reducers'
 
 const uuid = generateUUID()
-console.log('uuid', uuid);
 
 const store = createStore(
   reducer,
@@ -21,15 +20,15 @@ const store = createStore(
   )
 )
 
+store.dispatch({
+  type: 'SET_USER',
+  user: {
+    name: uuid,
+    uuid: uuid,
+  }
+})
+
 $(function onLoad() {
-  console.log('App begin')
-
-  ReactDOM.render((
-    <Provider store={store}>
-      <Root/>
-    </Provider>
-  ), document.getElementById('app'))
-
   const { scene, user } = createScene()
 
   let otherPlayers = {}
@@ -46,15 +45,18 @@ $(function onLoad() {
   }
 
   const setPosition = ({ uuid, coords }) => {
-    console.log('setting ', uuid, 'to', coords.x, coords.y, coords.z)
     if (!otherPlayers[uuid]) {
       addPlayer(uuid)
     }
     otherPlayers[uuid].position.set(coords.x, coords.y, coords.z)
   }
 
-  const { room, cable } = createRoom(store, uuid, setPosition, connectPlayer)
-  window.App = {}
-  App.room = room
-  App.cable = cable
+  const { channel, cable } = createChannel(store, uuid, setPosition, connectPlayer)
+  window.App = { channel, cable }
+
+  ReactDOM.render((
+    <Provider store={store}>
+      <Root/>
+    </Provider>
+  ), document.getElementById('app'))
 })

@@ -1,6 +1,6 @@
 export default (store, uuid, setPosition, connectPlayer, disconnectPlayer) => {
   const cable = ActionCable.createConsumer()
-  const room = cable.subscriptions.create({ channel: "RootChannel", uuid }, {
+  const channel = cable.subscriptions.create({ channel: "RootChannel", uuid }, {
     connected() {
       console.log('Root channel connected')
     },
@@ -46,5 +46,5 @@ export default (store, uuid, setPosition, connectPlayer, disconnectPlayer) => {
     },
   })
 
-  return { room, cable }
+  return { channel, cable }
 }

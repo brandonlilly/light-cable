@@ -7,7 +7,7 @@ class Root extends Component {
       <div>
         <MessageForm
           sendMessage={(message) => {
-            App.room.message(message)
+            App.channel.message(message)
           }} />
         <MessageList />
       </div>

@@ -1,9 +1,7 @@
 import { Scene, WebGLRenderer, Fog, PointLight, AmbientLight, Object3D, Clock } from 'three'
 import { createCamera } from './camera'
 import { createRoom } from './room'
-import { createPlayer } from './player'
 import User from '../user'
-import FlyControls from './flyControls'
 
 export function createScene() {
   const scene = new Scene()

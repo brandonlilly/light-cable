@@ -1,4 +1,3 @@
-import { Mesh, SphereGeometry, MeshLambertMaterial, MeshBasicMaterial, MeshDepthMaterial, MeshPhongMaterial } from 'three'
 import { TextureLoader, PointsMaterial, Geometry, Points, Vector3 } from 'three'
 
 export function createPlayer(x = 0, y = 0, z = 0) {

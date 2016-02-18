@@ -2,27 +2,27 @@
 class RootChannel < ApplicationCable::Channel
   def subscribed
     stream_from "root_channel"
-    broadcast type: 'player_connected', uuid: uuid
+    broadcast type: 'player_connected'
   end
 
   def unsubscribed
-    broadcast type: 'player_disconnected', uuid: uuid
+    broadcast type: 'player_disconnected'
   end
 
   def message(data)
     message = Message.create! content: data['message']
 
-    broadcast type: 'message', message: message, uuid: uuid
+    broadcast type: 'message', message: message
   end
 
   def set_position(data)
-    broadcast type: 'set_position', coords: data['coords'], uuid: uuid
+    broadcast type: 'set_position', coords: data['coords']
   end
 
   private
 
   def broadcast(data)
-    ActionCable.server.broadcast 'root_channel', data
+    ActionCable.server.broadcast 'root_channel', {uuid: uuid}.merge(data)
   end
 
   def uuid

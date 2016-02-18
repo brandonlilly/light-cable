@@ -26,13 +26,13 @@ class User {
     if (this.coordinatesChanged()) {
       this.coords = { x: this.object.position.x, y: this.object.position.y, z: this.object.position.z }
       if (App) {
-        App.room.set_position(this.coords)
+        App.channel.set_position(this.coords)
       }
     }
   }
 
   sendPosition() {
-    App.room.set_position(this.coords)
+    App.channel.set_position(this.coords)
   }
 
   coordinatesChanged() {

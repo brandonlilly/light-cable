@@ -10,14 +10,23 @@ function messagesReducer(state = {}, action) {
   }
 }
 
-function playersReducer(state = {}, action) {
+function userReducer(state = {}, action) {
+  switch (action.type) {
+    case 'SET_USER':
+      return {
+        ...state,
+        ...action.user
+      }
+    default:
+      return state
+  }
   return state
 }
 
 function reducer(state = {}, action) {
   return {
     messages: messagesReducer(state.messages, action),
-    players:  playersReducer(state.players, action),
+    user:     userReducer(state.user, action),
   }
 }
 
